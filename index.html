@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Um joguinho pra a mulher mais gostosa do mundo rsrs❤️</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(black, #2b0000);
+  color: white;
+  font-family: Arial;
+  text-align: center;
+}
+
+#score {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+}
+
+#msg {
+  position: fixed;
+  top: 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: #ff4d6d;
+}
+
+.heart {
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  animation: cair linear;
+}
+
+@keyframes cair {
+  from { transform: translateY(-50px); }
+  to { transform: translateY(100vh); }
+}
+
+#final {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+</style>
+</head>
+
+<body>
+
+<div id="score">❤️ 0</div>
+<div id="msg"></div>
+
+<div id="final">
+  <h1>Você conseguiu minha nenémmmmm🥹🥹🥹🥹🥹❤️</h1>
+  <p>Mas nada disso chega perto do que eu sinto por você...</p>
+  <p>Você é linda, incrível, gostosa, perfeita do seu jeito...</p>
+  <p>E sim... você é simplesmente maravilhosa 🥺</p>
+  <p>Eu sou completamente e loucamente apaixonado por você.</p>
+  <h2>Eu te amo muito muito muito muito muito muito muito muito muito ❤️</h2>
+
+  <audio id="musica" controls loop>
+    <source src="Waiting(MP3_160K).mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+let score = 0;
+
+const mensagens = [
+"você é linda demais ❤️",
+"eu amo seu jeitinho rsrs",
+"você é perfeita pra mim, nunca mude ok?💖",
+"eu penso em você o tempo todo, você e nos seu peitinhos deliciosos ",
+"você me faz muito feliz",
+"você é maravilhosa 🥹",
+"cada detalhe seu me encanta",
+"eu sou louco por você ❤️"
+];
+
+function criarCoracao() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+  heart.onclick = () => {
+    score++;
+    document.getElementById("score").innerText = "❤️ " + score;
+
+    document.getElementById("msg").innerText =
+      mensagens[Math.floor(Math.random() * mensagens.length)];
+
+    heart.remove();
+
+    if (score >= 15) {
+      finalizar();
+    }
+  };
+
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(criarCoracao, 800);
+
+function finalizar() {
+  document.getElementById("final").style.display = "flex";
+  const musica = document.getElementById("musica");
+  musica.play().catch(() => {});
+}
+</script>
+
+</body>
+</html>
